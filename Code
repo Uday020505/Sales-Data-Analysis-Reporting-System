@@ -1,0 +1,386 @@
+# Sales Data Analysis Project
+# Analyzing sales performance and trends
+# Created by: [Your Name]
+# No external files needed - all data stored in code
+
+from datetime import datetime
+
+# Sample sales data stored directly in code
+# Each sale is a dictionary with: Date, Product, Region, Salesperson, Quantity, Amount
+def get_sales_data():
+    sales_data = [
+        {'Date': '2024-01-15', 'Product': 'Laptop', 'Region': 'North', 'Salesperson': 'John Smith', 'Quantity': 2, 'Amount': 2400},
+        {'Date': '2024-01-16', 'Product': 'Mouse', 'Region': 'South', 'Salesperson': 'Sarah Johnson', 'Quantity': 10, 'Amount': 250},
+        {'Date': '2024-01-17', 'Product': 'Keyboard', 'Region': 'East', 'Salesperson': 'Mike Brown', 'Quantity': 5, 'Amount': 375},
+        {'Date': '2024-01-18', 'Product': 'Monitor', 'Region': 'West', 'Salesperson': 'Emily Davis', 'Quantity': 3, 'Amount': 900},
+        {'Date': '2024-01-19', 'Product': 'Laptop', 'Region': 'North', 'Salesperson': 'John Smith', 'Quantity': 1, 'Amount': 1200},
+        {'Date': '2024-01-20', 'Product': 'Headphones', 'Region': 'South', 'Salesperson': 'Sarah Johnson', 'Quantity': 8, 'Amount': 400},
+        {'Date': '2024-01-21', 'Product': 'Mouse', 'Region': 'East', 'Salesperson': 'Mike Brown', 'Quantity': 15, 'Amount': 375},
+        {'Date': '2024-01-22', 'Product': 'Laptop', 'Region': 'West', 'Salesperson': 'Emily Davis', 'Quantity': 2, 'Amount': 2400},
+        {'Date': '2024-01-23', 'Product': 'Keyboard', 'Region': 'North', 'Salesperson': 'John Smith', 'Quantity': 7, 'Amount': 525},
+        {'Date': '2024-01-24', 'Product': 'Monitor', 'Region': 'South', 'Salesperson': 'Sarah Johnson', 'Quantity': 4, 'Amount': 1200},
+        {'Date': '2024-01-25', 'Product': 'Headphones', 'Region': 'East', 'Salesperson': 'Mike Brown', 'Quantity': 6, 'Amount': 300},
+        {'Date': '2024-01-26', 'Product': 'Laptop', 'Region': 'West', 'Salesperson': 'Emily Davis', 'Quantity': 1, 'Amount': 1200},
+        {'Date': '2024-02-01', 'Product': 'Mouse', 'Region': 'North', 'Salesperson': 'John Smith', 'Quantity': 12, 'Amount': 300},
+        {'Date': '2024-02-02', 'Product': 'Keyboard', 'Region': 'South', 'Salesperson': 'Sarah Johnson', 'Quantity': 8, 'Amount': 600},
+        {'Date': '2024-02-03', 'Product': 'Monitor', 'Region': 'East', 'Salesperson': 'Mike Brown', 'Quantity': 5, 'Amount': 1500},
+        {'Date': '2024-02-04', 'Product': 'Laptop', 'Region': 'West', 'Salesperson': 'Emily Davis', 'Quantity': 3, 'Amount': 3600},
+        {'Date': '2024-02-05', 'Product': 'Headphones', 'Region': 'North', 'Salesperson': 'John Smith', 'Quantity': 10, 'Amount': 500},
+        {'Date': '2024-02-06', 'Product': 'Mouse', 'Region': 'South', 'Salesperson': 'Sarah Johnson', 'Quantity': 20, 'Amount': 500},
+        {'Date': '2024-02-07', 'Product': 'Keyboard', 'Region': 'East', 'Salesperson': 'Mike Brown', 'Quantity': 6, 'Amount': 450},
+        {'Date': '2024-02-08', 'Product': 'Monitor', 'Region': 'West', 'Salesperson': 'Emily Davis', 'Quantity': 2, 'Amount': 600},
+        {'Date': '2024-02-09', 'Product': 'Laptop', 'Region': 'North', 'Salesperson': 'John Smith', 'Quantity': 2, 'Amount': 2400},
+        {'Date': '2024-02-10', 'Product': 'Headphones', 'Region': 'South', 'Salesperson': 'Sarah Johnson', 'Quantity': 15, 'Amount': 750},
+        {'Date': '2024-02-11', 'Product': 'Mouse', 'Region': 'East', 'Salesperson': 'Mike Brown', 'Quantity': 18, 'Amount': 450},
+        {'Date': '2024-02-12', 'Product': 'Keyboard', 'Region': 'West', 'Salesperson': 'Emily Davis', 'Quantity': 9, 'Amount': 675},
+        {'Date': '2024-02-13', 'Product': 'Monitor', 'Region': 'North', 'Salesperson': 'John Smith', 'Quantity': 4, 'Amount': 1200}
+    ]
+    return sales_data
+
+# Function to calculate total sales
+def calculate_total_sales(data):
+    total = 0
+    for sale in data:
+        total = total + sale['Amount']
+    return total
+
+# Function to find sales by product
+def sales_by_product(data):
+    product_sales = {}
+    
+    for sale in data:
+        product = sale['Product']
+        amount = sale['Amount']
+        
+        if product in product_sales:
+            product_sales[product] = product_sales[product] + amount
+        else:
+            product_sales[product] = amount
+    
+    return product_sales
+
+# Function to find sales by region
+def sales_by_region(data):
+    region_sales = {}
+    
+    for sale in data:
+        region = sale['Region']
+        amount = sale['Amount']
+        
+        if region in region_sales:
+            region_sales[region] = region_sales[region] + amount
+        else:
+            region_sales[region] = amount
+    
+    return region_sales
+
+# Function to find sales by month
+def sales_by_month(data):
+    month_sales = {}
+    
+    for sale in data:
+        date = sale['Date']
+        month = date[:7]  # Gets YYYY-MM from date
+        amount = sale['Amount']
+        
+        if month in month_sales:
+            month_sales[month] = month_sales[month] + amount
+        else:
+            month_sales[month] = amount
+    
+    return month_sales
+
+# Function to find sales by salesperson
+def sales_by_salesperson(data):
+    salesperson_sales = {}
+    
+    for sale in data:
+        salesperson = sale['Salesperson']
+        amount = sale['Amount']
+        
+        if salesperson in salesperson_sales:
+            salesperson_sales[salesperson] = salesperson_sales[salesperson] + amount
+        else:
+            salesperson_sales[salesperson] = amount
+    
+    return salesperson_sales
+
+# Function to find top performing products
+def top_products(product_sales, n=5):
+    products_list = []
+    
+    for product, amount in product_sales.items():
+        products_list.append([product, amount])
+    
+    # Bubble sort to find top products
+    for i in range(len(products_list)):
+        for j in range(len(products_list) - 1):
+            if products_list[j][1] < products_list[j + 1][1]:
+                temp = products_list[j]
+                products_list[j] = products_list[j + 1]
+                products_list[j + 1] = temp
+    
+    # Return top n products
+    top_n = []
+    for i in range(min(n, len(products_list))):
+        top_n.append(products_list[i])
+    
+    return top_n
+
+# Function to find lowest performing product
+def lowest_product(product_sales):
+    min_product = ""
+    min_amount = float('inf')
+    
+    for product, amount in product_sales.items():
+        if amount < min_amount:
+            min_amount = amount
+            min_product = product
+    
+    return min_product, min_amount
+
+# Function to calculate average sale amount
+def calculate_average_sale(data):
+    if len(data) == 0:
+        return 0
+    total = calculate_total_sales(data)
+    average = total / len(data)
+    return average
+
+# Function to count transactions
+def count_transactions(data):
+    return len(data)
+
+# Function to find best performing region
+def best_region(region_sales):
+    max_region = ""
+    max_amount = 0
+    
+    for region, amount in region_sales.items():
+        if amount > max_amount:
+            max_amount = amount
+            max_region = region
+    
+    return max_region, max_amount
+
+# Function to find best salesperson
+def best_salesperson(salesperson_sales):
+    max_person = ""
+    max_amount = 0
+    
+    for person, amount in salesperson_sales.items():
+        if amount > max_amount:
+            max_amount = amount
+            max_person = person
+    
+    return max_person, max_amount
+
+# Function to generate visual bar chart
+def print_bar_chart(title, data_dict, max_width=50):
+    print("\n" + title)
+    print("-" * 70)
+    
+    # Find maximum value for scaling
+    max_value = 0
+    for value in data_dict.values():
+        if value > max_value:
+            max_value = value
+    
+    # Print bars
+    for label, value in data_dict.items():
+        bar_length = int((value / max_value) * max_width)
+        bar = "█" * bar_length
+        print(f"{label:20s} | {bar} ${value:,.0f}")
+
+# Function to generate summary report
+def generate_summary_report(data):
+    print("\n" + "=" * 70)
+    print("                    SALES DATA ANALYSIS REPORT")
+    print("=" * 70)
+    
+    # Basic Statistics
+    print("\n1. OVERALL STATISTICS:")
+    print("-" * 70)
+    total_sales = calculate_total_sales(data)
+    total_transactions = count_transactions(data)
+    avg_sale = calculate_average_sale(data)
+    
+    print(f"Total Sales Revenue      : ${total_sales:,.2f}")
+    print(f"Total Transactions       : {total_transactions}")
+    print(f"Average Sale Amount      : ${avg_sale:,.2f}")
+    
+    # Sales by Product
+    print("\n2. SALES BY PRODUCT:")
+    print("-" * 70)
+    product_sales = sales_by_product(data)
+    for product, amount in product_sales.items():
+        percentage = (amount / total_sales) * 100
+        print(f"{product:20s} : ${amount:>12,.2f} ({percentage:>5.1f}%)")
+    
+    # Top 3 Products
+    print("\n3. TOP 3 PERFORMING PRODUCTS:")
+    print("-" * 70)
+    top_3 = top_products(product_sales, 3)
+    rank = 1
+    for product, amount in top_3:
+        print(f"{rank}. {product:20s} : ${amount:>12,.2f}")
+        rank = rank + 1
+    
+    # Lowest Product
+    print("\n4. LOWEST PERFORMING PRODUCT:")
+    print("-" * 70)
+    low_product, low_amount = lowest_product(product_sales)
+    print(f"{low_product:20s} : ${low_amount:,.2f}")
+    
+    # Sales by Region
+    print("\n5. SALES BY REGION:")
+    print("-" * 70)
+    region_sales = sales_by_region(data)
+    for region, amount in region_sales.items():
+        percentage = (amount / total_sales) * 100
+        print(f"{region:15s} : ${amount:>12,.2f} ({percentage:>5.1f}%)")
+    
+    # Best Region
+    top_region, top_region_amount = best_region(region_sales)
+    print(f"\nBest Region: {top_region} with ${top_region_amount:,.2f}")
+    
+    # Sales by Salesperson
+    print("\n6. SALES BY SALESPERSON:")
+    print("-" * 70)
+    salesperson_sales = sales_by_salesperson(data)
+    for person, amount in salesperson_sales.items():
+        print(f"{person:20s} : ${amount:>12,.2f}")
+    
+    # Best Salesperson
+    top_person, top_person_amount = best_salesperson(salesperson_sales)
+    print(f"\nTop Salesperson: {top_person} with ${top_person_amount:,.2f}")
+    
+    # Monthly Trends
+    print("\n7. MONTHLY SALES TREND:")
+    print("-" * 70)
+    month_sales = sales_by_month(data)
+    for month, amount in sorted(month_sales.items()):
+        print(f"{month:10s} : ${amount:>12,.2f}")
+    
+    # Visual Charts
+    print_bar_chart("\n8. PRODUCT SALES VISUALIZATION:", product_sales)
+    print_bar_chart("\n9. REGIONAL SALES VISUALIZATION:", region_sales)
+    
+    print("\n" + "=" * 70)
+
+# Function to save report to file
+def save_report_to_file(data, filename):
+    file = open(filename, 'w')
+    
+    file.write("SALES DATA ANALYSIS REPORT\n")
+    file.write("=" * 70 + "\n\n")
+    
+    # Basic Stats
+    total_sales = calculate_total_sales(data)
+    total_transactions = count_transactions(data)
+    avg_sale = calculate_average_sale(data)
+    
+    file.write("OVERALL STATISTICS:\n")
+    file.write("-" * 70 + "\n")
+    file.write(f"Total Sales Revenue: ${total_sales:,.2f}\n")
+    file.write(f"Total Transactions: {total_transactions}\n")
+    file.write(f"Average Sale Amount: ${avg_sale:,.2f}\n\n")
+    
+    # Sales by Product
+    file.write("SALES BY PRODUCT:\n")
+    file.write("-" * 70 + "\n")
+    product_sales = sales_by_product(data)
+    for product, amount in product_sales.items():
+        percentage = (amount / total_sales) * 100
+        file.write(f"{product}: ${amount:,.2f} ({percentage:.1f}%)\n")
+    
+    # Top 3 Products
+    file.write("\nTOP 3 PRODUCTS:\n")
+    file.write("-" * 70 + "\n")
+    top_3 = top_products(product_sales, 3)
+    rank = 1
+    for product, amount in top_3:
+        file.write(f"{rank}. {product}: ${amount:,.2f}\n")
+        rank = rank + 1
+    
+    # Lowest Product
+    low_product, low_amount = lowest_product(product_sales)
+    file.write(f"\nLowest Product: {low_product}: ${low_amount:,.2f}\n")
+    
+    # Sales by Region
+    file.write("\nSALES BY REGION:\n")
+    file.write("-" * 70 + "\n")
+    region_sales = sales_by_region(data)
+    for region, amount in region_sales.items():
+        file.write(f"{region}: ${amount:,.2f}\n")
+    
+    # Best Region
+    top_region, top_region_amount = best_region(region_sales)
+    file.write(f"\nBest Region: {top_region} - ${top_region_amount:,.2f}\n")
+    
+    # Sales by Salesperson
+    file.write("\nSALES BY SALESPERSON:\n")
+    file.write("-" * 70 + "\n")
+    salesperson_sales = sales_by_salesperson(data)
+    for person, amount in salesperson_sales.items():
+        file.write(f"{person}: ${amount:,.2f}\n")
+    
+    # Best Salesperson
+    top_person, top_person_amount = best_salesperson(salesperson_sales)
+    file.write(f"\nTop Salesperson: {top_person} - ${top_person_amount:,.2f}\n")
+    
+    # Monthly Trends
+    file.write("\nMONTHLY SALES TREND:\n")
+    file.write("-" * 70 + "\n")
+    month_sales = sales_by_month(data)
+    for month, amount in sorted(month_sales.items()):
+        file.write(f"{month}: ${amount:,.2f}\n")
+    
+    file.close()
+    print(f"\n✓ Report saved successfully as '{filename}'!")
+
+# Main Program
+def main():
+    print("=" * 70)
+    print("              SALES DATA ANALYSIS SYSTEM")
+    print("=" * 70)
+    print()
+    print("Loading sales data from database...")
+    
+    # Get sales data
+    sales_data = get_sales_data()
+    
+    print(f"✓ Successfully loaded {len(sales_data)} sales transactions")
+    print()
+    
+    # Generate and display report
+    generate_summary_report(sales_data)
+    
+    # Ask if user wants to save report
+    print()
+    save_choice = input("Do you want to save this report to a file? (yes/no): ")
+    
+    if save_choice.lower() == 'yes' or save_choice.lower() == 'y':
+        report_filename = input("Enter filename for report (without extension): ")
+        if report_filename == "":
+            report_filename = "sales_report"
+        report_filename = report_filename + ".txt"
+        save_report_to_file(sales_data, report_filename)
+    
+    print()
+    print("=" * 70)
+    print("Analysis complete! Thank you for using Sales Analysis System.")
+    print("=" * 70)
+
+# Run the program
+if __name__ == "__main__":
+    main()
+
+
+
+
+
+
+
+
+
