@@ -2,7 +2,6 @@
 
 A Python-based sales analytics application that analyzes sales performance, identifies trends, and generates detailed summary reports using structured sales data stored directly in code.
 
----
 
 ## 🚀 Project Overview
 
@@ -16,7 +15,6 @@ The **Sales Data Analysis System** processes transactional sales data and provid
 
 This project demonstrates strong fundamentals in **Python, data analysis logic, and report generation** without relying on external libraries or files.
 
----
 
 ## 🛠️ Technologies Used
 
@@ -28,24 +26,6 @@ This project demonstrates strong fundamentals in **Python, data analysis logic, 
   - Loops
   - File handling
   - String formatting
-
----
-
-## 📂 Dataset Description
-
-The dataset is stored directly within the code as a list of dictionaries.  
-Each transaction includes:
-
-| Field | Description |
-|------|------------|
-| Date | Transaction date (YYYY-MM-DD) |
-| Product | Product name |
-| Region | Sales region |
-| Salesperson | Name of salesperson |
-| Quantity | Units sold |
-| Amount | Total sale value |
-
----
 
 ## 🔍 Features & Analysis
 
@@ -80,7 +60,6 @@ Each transaction includes:
 - Saves complete analysis as a `.txt` file
 - Structured and readable format for business reporting
 
----
 
 ## ▶️ How to Run the Project
 
