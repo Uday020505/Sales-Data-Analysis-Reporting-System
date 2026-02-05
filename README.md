@@ -59,13 +59,3 @@ This project demonstrates strong fundamentals in **Python, data analysis logic, 
 ### 7️⃣ Report Generation
 - Saves complete analysis as a `.txt` file
 - Structured and readable format for business reporting
-
-
-## ▶️ How to Run the Project
-
-1. Make sure **Python 3** is installed on your system.
-2. Clone or download the repository.
-3. Run the script using:
-
-```bash
-python sales_analyzer.py
